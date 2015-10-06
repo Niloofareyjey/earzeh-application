@@ -6,10 +6,31 @@
  * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
-
+namespace Application;
 return array(
 
+'doctrine'=>array(
+    'driver' => array(
+        __NAMESPACE__.'_driver' => array(
+            'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+            'cache' => 'array',
+            'paths' => array(__DIR__ . '/../src/'.__NAMESPACE__.'/Entity')
+        ),
 
+        'orm_default' => array(
+            'drivers' => array(
+                __NAMESPACE__ . '\Entity' => __NAMESPACE__ . '_driver'
+            )
+        )),
+    'authentication' => array(
+        'orm_default' => array(
+            'object_manager' => 'Doctrine\ORM\EntityManager',
+            'identity_class' => 'Application\Entity\User',
+            'identity_property' => 'username',
+            'credential_property' => 'password',
+        )
+    )
+),
 
     'router' => array(
         'routes' => array(
@@ -63,12 +84,7 @@ return array(
         'aliases' => array(
             'translator' => 'MvcTranslator',
         ),
-        'factories' => array(
-            "Ellie\Service\Acl"=> "Ellie\Service\Acl\ServiceFactory",
-            'Ellie\Service\Authentication' => 'Ellie\Service\Authentication\ServiceFactory',
-        )
     ),
-
     'translator' => array(
         'locale' => 'en_US',
         'translation_file_patterns' => array(
@@ -84,7 +100,6 @@ return array(
             'Application\Controller\Index' => 'Application\Controller\IndexController'
         ),
     ),
-
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions'       => true,

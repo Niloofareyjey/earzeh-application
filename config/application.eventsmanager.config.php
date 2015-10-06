@@ -6,7 +6,6 @@ return array(
             "listenerName" => "className",
             // ....
         )
-    ),
-    ""
+    )
     //...
 );

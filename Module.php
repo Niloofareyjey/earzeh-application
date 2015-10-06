@@ -11,19 +11,14 @@ namespace Application;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
-use Ellie\Service\Acl\Service;
 
 class Module
 {
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();
-
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
-        // acl
-//        $aclService = $e->getApplication()->getServiceManager()->get("Ellie\\Service\\Acl");
-  //      $eventManager-> attach('route', array($aclService, 'checkAcl'));
     }
 
 
@@ -35,7 +30,6 @@ class Module
 
     public function getAutoloaderConfig()
     {
-
         return array(
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
