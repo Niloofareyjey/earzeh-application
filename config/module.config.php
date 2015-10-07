@@ -111,9 +111,13 @@ return array(
             'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
+//            'treeSelect' =>__DIR__ . '../view/error/index.phtml',
+//            // __DIR__.'/../../../vendor/Ellie/library/Ellie/UI/view/ui/form/element/partial/tree-select-partial.phtml'
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
+            __DIR__ . '/../../../vendor/Ellie/library/Ellie/UI/view'
+
         ),
     ),
     // Placeholder for console routes
