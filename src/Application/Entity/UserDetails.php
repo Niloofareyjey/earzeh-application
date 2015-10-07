@@ -6,41 +6,63 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * UserDetails
+ *
+ * @ORM\Table(name="user_details", indexes={@ORM\Index(name="user_id_idx", columns={"user_id"})})
+ * @ORM\Entity
  */
 class UserDetails
 {
     /**
      * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="documents", type="text", nullable=true)
      */
     private $documents;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="info", type="text", nullable=true)
      */
     private $info;
 
     /**
      * @var boolean
+     *
+     * @ORM\Column(name="active", type="boolean", nullable=false)
      */
     private $active;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=45, nullable=true)
      */
     private $phone;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="ticket_manager", type="string", length=45, nullable=true)
      */
     private $ticketManager;
 
     /**
-     * @var \Blog\Entity\User
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
      */
     private $user;
 
